@@ -1,0 +1,55 @@
+---
+title       : Fuel consumption prediction
+subtitle    : mtcars dataset
+author      : Juan Antonio Quiñones Sánchez
+job         : Freelance
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Dataset
+
+The dataset I've used to make the shiny app is mtcars. You can see a summary of dataset.
+
+``` {r, echo=FALSE}
+data(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+mtcars$vs <- factor(mtcars$vs)
+mtcars$am <- factor(mtcars$am)
+mtcars$gear <- factor(mtcars$gear)
+mtcars$carb <- factor(mtcars$carb)
+summary (mtcars)
+```
+
+--- .class #id 
+
+## Model
+
+I've made a linear model to predict fuel consumption in miles per gallon with weight in lb and power in hp. The summary of the model is:
+``` {r}
+fit <- lm(mpg ~ wt + hp, data=mtcars)
+summary(fit)$coefficients
+```
+
+
+--- .class #id 
+
+## R squared
+
+R squared is:
+``` {r}
+summary(fit)$r.squared
+```
+
+--- .class #id 
+
+## Residuals
+
+Plots of the residuals are:
+``` {r}
+plot(fit)
+```

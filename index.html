@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fuel consumption prediction</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Fuel consumption prediction">
+  <meta name="author" content="Juan Antonio Quiñones Sánchez">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Fuel consumption prediction</h1>
+    <h2>mtcars dataset</h2>
+    <p>Juan Antonio Quiñones Sánchez<br/>Freelance</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The dataset I&#39;ve used to make the shiny app is mtcars. You can see a summary of dataset.</p>
+
+<pre><code>##       mpg        cyl         disp             hp             drat      
+##  Min.   :10.40   4:11   Min.   : 71.1   Min.   : 52.0   Min.   :2.760  
+##  1st Qu.:15.43   6: 7   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080  
+##  Median :19.20   8:14   Median :196.3   Median :123.0   Median :3.695  
+##  Mean   :20.09          Mean   :230.7   Mean   :146.7   Mean   :3.597  
+##  3rd Qu.:22.80          3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920  
+##  Max.   :33.90          Max.   :472.0   Max.   :335.0   Max.   :4.930  
+##        wt             qsec       vs     am     gear   carb  
+##  Min.   :1.513   Min.   :14.50   0:18   0:19   3:15   1: 7  
+##  1st Qu.:2.581   1st Qu.:16.89   1:14   1:13   4:12   2:10  
+##  Median :3.325   Median :17.71                 5: 5   3: 3  
+##  Mean   :3.217   Mean   :17.85                        4:10  
+##  3rd Qu.:3.610   3rd Qu.:18.90                        6: 1  
+##  Max.   :5.424   Max.   :22.90                        8: 1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Model</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I&#39;ve made a linear model to predict fuel consumption in miles per gallon with weight in lb and power in hp. The summary of the model is:</p>
+
+<pre><code class="r">fit &lt;- lm(mpg ~ wt + hp, data=mtcars)
+summary(fit)$coefficients
+</code></pre>
+
+<pre><code>##                Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 37.22727012 1.59878754 23.284689 2.565459e-20
+## wt          -3.87783074 0.63273349 -6.128695 1.119647e-06
+## hp          -0.03177295 0.00902971 -3.518712 1.451229e-03
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>R squared</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>R squared is:</p>
+
+<pre><code class="r">summary(fit)$r.squared
+</code></pre>
+
+<pre><code>## [1] 0.8267855
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Residuals</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Plots of the residuals are:</p>
+
+<pre><code class="r">plot(fit)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> <img src="assets/fig/unnamed-chunk-4-2.png" alt="plot of chunk unnamed-chunk-4"> <img src="assets/fig/unnamed-chunk-4-3.png" alt="plot of chunk unnamed-chunk-4"> <img src="assets/fig/unnamed-chunk-4-4.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Dataset'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Model'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='R squared'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Residuals'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
